@@ -68,3 +68,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+### References
+* [Tutorial: Intro to React](https://reactjs.org/tutorial/tutorial.html)
+* [Modern API data-fetching methods in React](https://blog.logrocket.com/modern-api-data-fetching-methods-react/)
+* [Fetch data from local API](https://stackoverflow.com/questions/65427633/fetch-data-from-local-api)
+* [AJAX and APIs](https://reactjs.org/docs/faq-ajax.html#how-can-i-make-an-ajax-call)

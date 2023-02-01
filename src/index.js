@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import jQuery from 'jquery';
+
+const compl_url = '/api/todos';
 
 // class Square extends React.Component {
 //     // // Setup a constructor that takes props
@@ -87,7 +90,45 @@ class Game extends React.Component {
             }],
             xIsNext: true,
             stepNumber: 0,
+            complement: {
+                error: null,
+                isLoaded: false,
+                message: "",
+            },
         }
+    }
+
+    componentDidMount() {
+        // fetch the complement api
+        console.log(compl_url)
+        fetch(compl_url)
+            // process response to json
+            .then(async (resp) => {
+                // console.log(resp.json())
+                await resp.json()
+            })
+            // error handling
+            .then(
+                // if good, set state to loaded and recieve complement message
+                (result) => {
+                    console.log('res: ' + result);
+                    this.setState({
+                        complement: {
+                            isLoaded: true,
+                            message: result,
+                        }
+                    });
+                },
+                // if got error, set state to loaded and report the error
+                (error) => {
+                    this.setState({
+                        complement: {
+                            isLoaded: true,
+                            error: error,
+                        }
+                    });
+                },
+            )
     }
 
     handleClick(i) {
@@ -136,9 +177,16 @@ class Game extends React.Component {
 
         let status;
         let complement;
+
+        console.log(this.state.complement.isLoaded);
+        console.log(this.state.complement.message);
+        console.log(this.state.complement.error);
+        
         if (winner) {
             status = 'Winner: ' + winner;
-            complement = 'Menggokil!';
+            if (this.state.complement.isLoaded && this.state.complement.message !== undefined) {
+                complement = this.complement.message;
+            }
         } else {
             status = 'Next player: ' + (this.state.xIsNext ? 'X': 'O');
             complement = null;
