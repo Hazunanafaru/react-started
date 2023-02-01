@@ -135,10 +135,13 @@ class Game extends React.Component {
         })
 
         let status;
+        let complement;
         if (winner) {
             status = 'Winner: ' + winner;
+            complement = 'Menggokil!';
         } else {
             status = 'Next player: ' + (this.state.xIsNext ? 'X': 'O');
+            complement = null;
         }
 
         return (
@@ -150,7 +153,12 @@ class Game extends React.Component {
                 />
                 </div>
                 <div className="game-info">
-                    <div>{status}</div>
+                    <div>
+                        {status}
+                    </div>
+                    <div>
+                        {complement}
+                    </div>
                     <ol>{moves}</ol>
                 </div>
             </div>
